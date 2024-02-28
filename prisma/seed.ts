@@ -3,16 +3,21 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  await prisma.user.create({
+  // await prisma.user.create({
+  //   data: {
+  //     email: "ahmedd@ahmedd.com",
+  //     name: "prisma",
+  //     address: {
+  //       street: "STREET",
+  //       city: "CITY",
+  //       state: "STATE",
+  //       zip: "ZIP",
+  //     },
+  //   },
+  // });
+  await prisma.todo.create({
     data: {
-      email: "prisma@prisma.com",
-      name: "prisma",
-      address: {
-        street: "STREET",
-        city: "CITY",
-        state: "STATE",
-        zip: "ZIP",
-      },
+      title: "Learn Prisma ORM",
     },
   });
 }
