@@ -5,7 +5,6 @@ import { Plus } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -29,7 +28,7 @@ import { useState } from "react";
 import Spinner from "./Spinner";
 import { TodoFormValues, todoFormSchema } from "@/validation";
 
-const AddTodoForm = () => {
+const AddTodoForm = ({ userId }: { userId: string | null }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const defaultValues: Partial<TodoFormValues> = {
@@ -44,9 +43,9 @@ const AddTodoForm = () => {
     mode: "onChange",
   });
 
-  const onSubmit = async (data: TodoFormValues) => {
+  const onSubmit = async ({ title, completed, body }: TodoFormValues) => {
     setLoading(true);
-    await createodoAction(data);
+    await createodoAction({ title, completed, body, userId: userId });
     setLoading(false);
     setOpen(false);
     form.reset();
